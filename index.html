@@ -6,6 +6,7 @@
     <title>Full Marathon Records | My Running Log</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<script src="script.js"></script>
 <body>
 
     <header>
@@ -19,10 +20,10 @@
         <section class="summary">
             <div class="summary-card">
                 <span class="label">Personal Best</span>
-                <span class="value">2:45:03</span> </div>
+                <span class="value" id="pbDisplay">--:--:--</span> </div>
             <div class="summary-card">
                 <span class="label">Total Runs</span>
-                <span class="value">11 Races</span>
+                <span class="value" id="totalRunsDisplay">-- Races</span>
             </div>
         </section>
 
@@ -37,7 +38,7 @@
                     <p class="comment">気温が高く前半オーバーペースになってしまった</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">2:59:30</span>
+                    <span class="time race-time-value">2:59:30</span>
                 </div>
             </div>
 
@@ -49,7 +50,7 @@
                     <p class="comment">記録は狙っていなかった大会．楽しんで走れた．</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">2:46:30</span>
+                    <span class="time race-time-value">2:46:30</span>
                 </div>
             </div>
 
@@ -61,7 +62,7 @@
                     <p class="comment">足が持たず後半失速．距離走が必要．</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">2:47:30</span>
+                    <span class="time race-time-value">2:47:30</span>
                 </div>
             </div>
 
@@ -73,7 +74,7 @@
                     <p class="comment">寒さのせいで前半に体がかたかった．</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">2:45:25</span>
+                    <span class="time race-time-value">2:45:25</span>
                 </div>
             </div>
 
@@ -85,7 +86,7 @@
                     <p class="comment">最後につったがコンディションがよくPB更新</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">2:45:03</span>
+                    <span class="time race-time-value">2:45:03</span>
                 </div>
             </div>
 
@@ -97,7 +98,7 @@
                     <p class="comment">宮城マラソンの疲労が残っていて半分で失速</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">3:39:10</span>
+                    <span class="time race-time-value">3:39:10</span>
                 </div>
             </div>
 
@@ -109,7 +110,7 @@
                     <p class="comment">飛行機が欠航し当日ほぼ寝れずにスタート</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">3:00:36</span>
+                    <span class="time race-time-value">3:00:36</span>
                 </div>
             </div>
 
@@ -121,7 +122,7 @@
                     <p class="comment">イーブンペースを守り切れてPB更新</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">2:48:21</span>
+                    <span class="time race-time-value">2:48:21</span>
                 </div>
             </div>
 
@@ -133,7 +134,7 @@
                     <p class="comment">気温が高く脱水になったが何とかゴール</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">2:55:47</span>
+                    <span class="time race-time-value">2:55:47</span>
                 </div>
             </div>
 
@@ -145,7 +146,7 @@
                     <p class="comment">前半抑えれたおかげで後半に加速できた</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">3:19:08</span>
+                    <span class="time race-time-value">3:19:08</span>
                 </div>
             </div>
 
@@ -157,7 +158,7 @@
                     <p class="comment">初マラソン！完走おめでとう</p>
                 </div>
                 <div class="race-time">
-                    <span class="time">4:19:44</span>
+                    <span class="time race-time-value">4:19:44</span>
                 </div>
             </div>
 

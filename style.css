@@ -66,6 +66,14 @@ h2 {
 }
 
 /* 各大会の記録 */
+/* リンクの下線を消し、文字色を元のデザインに固定する */
+.race-link {
+    text-decoration: none; /* 下線を消す */
+    display: block;        /* カードの横幅いっぱいをクリック可能にする */
+    color: inherit;       /* 文字色を親要素から継承する */
+}
+
+
 .race-item {
     background: white;
     border-radius: 8px;
@@ -141,5 +149,224 @@ footer {
     }
     .summary {
         flex-direction: column;
+    }
+}
+
+/* 詳細ページ全体のコンテナ */
+.detail-container {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 50px;
+}
+
+/* 戻るボタンのスタイル */
+.back-link {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.back-link:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* =========================================
+   詳細ページ（detail-page）専用スタイル
+   ========================================= */
+
+/* 1. 全体コンテナ */
+.detail-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-top: 40px;
+}
+
+/* 2. ヘッダー・メインタイム */
+.detail-header {
+    text-align: center;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.detail-main-time {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+/* 3. セクション共通見出し (グラフ・コメント・メディア共通) */
+.detailed-graph h3, 
+.detailed-comment h3, 
+.media-section h3 {
+    border-left: 5px solid #1e3c72;
+    padding-left: 15px;
+    margin: 30px 0 15px 0;
+    font-size: 1.2rem;
+    color: #1e3c72;
+}
+
+/* 4. 基本情報グリッド (DATE, LOCATION, SHOES等) */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.grid-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-item .label {
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.grid-item .value {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* 5. シューズ画像 */
+.shoes-img-wrapper {
+    width: 100%;
+    height: 60px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shoes-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* 6. グラフエリア */
+.graph-container {
+    background: white;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    height: 300px;
+    margin-bottom: 40px;
+}
+
+/* 7. 振り返りコメント */
+.detailed-comment p {
+    background: #fffdf0;
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* 8. メディアセクション (コースマップ & 完走証 横並び) */
+.media-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.map-block, .certificate-block {
+    flex: 1;
+    min-width: 0;
+}
+
+.img-wrapper {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.map-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* 完走証：高さ制限とホバー効果 */
+.certificate-image-small {
+    max-width: 100%;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.certificate-image-small:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.map-image-small {
+    max-width: 100%;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.map-image-small:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.zoom-help {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 8px;
+}
+
+/* 9. レスポンシブ対応 */
+@media (max-width: 768px) {
+    /* メディアセクションを縦並びに */
+    .media-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .certificate-image-small {
+        max-height: 500px; /* スマホでは少し大きく表示 */
+    }
+
+    /* 全体コンテナの余白調整 */
+    .detail-container {
+        padding: 20px;
+    }
+
+    .detail-main-time {
+        font-size: 2.2rem;
+    }
+
+    .graph-container {
+        height: 250px;
     }
 }

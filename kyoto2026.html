@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京都マラソン 2026 | Details</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="detail-page">
+
+    <header>
+        <div class="header-content">
+            <h1>Race Details</h1>
+            <a href="index.html" class="back-link">← Back to List</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="detail-container">
+            <div class="detail-header">
+                <h2>京都マラソン 2026</h2>
+                <div class="detail-main-time">2:59:30</div>
+            </div>
+
+            <div class="detail-grid">
+                <div class="grid-item">
+                    <span class="label">DATE</span>
+                    <span class="value">2026.02.15</span>
+                </div>
+                <div class="grid-item">
+                    <span class="label">LOCATION</span>
+                    <span class="value">京都（西京極〜平安神宮）</span>
+                </div>
+                <div class="grid-item">
+                    <span class="label">WEATHER</span>
+                    <span class="value">晴れ</span>
+                </div>
+                <div class="grid-item shoes-item">
+                    <span class="label">SHOES</span>
+                    <div class="shoes-img-wrapper">
+                        <img src="images/adios_pro4.jpg" alt="Adios Pro 4" class="shoes-image">
+                    </div>
+                    <span class="value shoes-name">Adios Pro 4</span>
+                </div>
+            </div>
+
+            <section class="detailed-graph">
+                <h3>走行データ（距離 vs 経過時間）</h3>
+                <div class="graph-container">
+                    <canvas id="raceChart"></canvas>
+                </div>
+            </section>
+
+            <div class="detailed-comment">
+                <h3>振り返り</h3>
+                <p>...振り返りテキスト...</p>
+            </div>
+
+            <section class="media-section">
+                <div class="media-container">
+                    
+                    <div class="map-block">
+                        <h3>コースマップ</h3>
+                        <div class="img-wrapper">
+                            <a href="images/kyoto2026_map.jpg" target="_blank" title="拡大表示">
+                                <img src="images/kyoto2026_map.jpg" alt="京都マラソン 2026 コースマップ" class="map-image-small">   
+                            </a>
+                            <p class="zoom-help">※クリックで拡大表示</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-block">
+                        <h3>完走証</h3>
+                        <div class="img-wrapper">
+                            <a href="images/kyoto2026_certificate.jpg" target="_blank" title="拡大表示">
+                                <img src="images/kyoto2026_certificate.jpg" alt="京都マラソン 2026 完走証" class="certificate-image-small">
+                            </a>
+                            <p class="zoom-help">※クリックで拡大表示</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Running Log</p>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('raceChart').getContext('2d');
+
+        const timeStrings = [
+            "0:00:00", "0:19:22", "0:38:40", "0:57:57", "1:17:20", 
+            "1:36:47", "1:56:38", "2:18:21", "2:48:13", "2:59:30"
+        ];
+
+        const distances = [0, 5, 10, 15, 20, 25, 30, 35, 40, 42.195];
+
+        // データを {x: 距離, y: 分} のオブジェクト形式に変換
+        const raceData = distances.map((dist, index) => {
+            const parts = timeStrings[index].split(':').map(Number);
+            const minutes = parts[0] * 60 + parts[1] + parts[2] / 60;
+            return { x: dist, y: minutes };
+        });
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: '経過時間 (分)',
+                    data: raceData, // 変換したデータを使用
+                    borderColor: '#1e3c72',
+                    backgroundColor: 'rgba(30, 60, 114, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'linear', // ここを linear にすることで数値軸になる
+                        position: 'bottom',
+                        title: { display: true, text: '距離 (km)' },
+                        min: 0,
+                        max: 45, // 余裕を持って表示
+                        ticks: {
+                            stepSize: 5 // 5km刻みの目盛りにする
+                        }
+                    },
+                    y: { 
+                        title: { display: true, text: '経過時間 (分)' },
+                        beginAtZero: true 
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                // context.dataIndex を使って元の文字列を表示
+                                return `距離: ${context.parsed.x}km タイム: ${timeStrings[context.dataIndex]}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

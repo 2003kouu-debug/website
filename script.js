@@ -10,6 +10,8 @@ const allRaceData = [
         time: "2:59:30",
         shoesName: "Nike Alphafly 3",
         shoesImg: "images/alphafly3.jpg",
+        courseMap: "images/kyoto2026_map.jpg",        
+        certificate: "images/kyoto2026_certificate.jpg", 
         comment: "気温が高く前半オーバーペースになってしまった",
         laps: ["0:00:00", "0:19:22", "0:38:40", "0:57:57", "1:17:20", "1:36:47", "1:56:38", "2:18:21", "2:48:13", "2:59:30"]
     },
@@ -105,14 +107,10 @@ document.addEventListener('DOMContentLoaded', function() {
         raceListContainer.innerHTML = ''; // 一旦空にする
 
         allRaceData.forEach(race => {
-            // 京都2026だけ詳細ページへのリンクを貼る設定
-            const isLink = race.id === "kyoto2026";
-            
-            const wrapperStart = isLink ? `<a href="${race.id}.html" class="race-link">` : `<div class="race-link-placeholder">`;
-            const wrapperEnd = isLink ? `</a>` : `</div>`;
-
+            // 全てのレースを detail.html へのリンクにする
+            // URLの末尾に ?id=大会ID を付けることで、どの大会か伝えます
             const html = `
-                ${wrapperStart}
+                <a href="detail.html?id=${race.id}" class="race-link">
                     <div class="race-item">
                         <div class="race-date">${race.date}</div>
                         <div class="race-info">
@@ -124,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span class="time race-time-value">${race.time}</span>
                         </div>
                     </div>
-                ${wrapperEnd}
+                </a>
             `;
             raceListContainer.innerHTML += html;
         });

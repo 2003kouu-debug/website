@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Race Details | My Running Log</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="detail-page">
+
+    <header>
+        <div class="header-content">
+            <h1>Race Details</h1>
+            <a href="index.html" class="back-link">← Back to List</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="detail-container">
+            <div class="detail-header">
+                <h2 id="display-race-name">Loading...</h2>
+                <div class="detail-main-time" id="display-main-time">--:--:--</div>
+            </div>
+
+            <div class="detail-grid">
+                <div class="grid-item">
+                    <span class="label">DATE</span>
+                    <span class="value" id="display-date">-</span>
+                </div>
+                <div class="grid-item">
+                    <span class="label">LOCATION</span>
+                    <span class="value" id="display-location">-</span>
+                </div>
+                <div class="grid-item">
+                    <span class="label">WEATHER</span>
+                    <span class="value" id="display-weather">-</span>
+                </div>
+                <div class="grid-item shoes-item" id="shoes-section">
+                    <span class="label">SHOES</span>
+                    <div class="shoes-img-wrapper">
+                        <img src="" alt="" id="display-shoes-img" class="shoes-image">
+                    </div>
+                    <span class="value shoes-name" id="display-shoes-name">-</span>
+                </div>
+            </div>
+
+            <section class="detailed-graph" id="graph-section">
+                <h3>走行データ（距離 vs 経過時間）</h3>
+                <div class="graph-container">
+                    <canvas id="raceChart"></canvas>
+                </div>
+            </section>
+
+            <div class="detailed-comment" id="comment-section">
+                <h3>振り返り</h3>
+                <p id="display-comment">-</p>
+            </div>
+
+            <section class="media-section">
+                <div class="media-container">
+                    <div class="map-block" id="map-section">
+                        <h3>コースマップ</h3>
+                        <div class="img-wrapper">
+                            <img src="" alt="Course Map" id="display-map" class="map-image">
+                        </div>
+                    </div>
+
+                    <div class="certificate-block" id="cert-section">
+                        <h3>完走証</h3>
+                        <div class="img-wrapper">
+                            <a href="" id="display-cert-link" target="_blank">
+                                <img src="" alt="Certificate" id="display-cert-img" class="certificate-image-small">
+                            </a>
+                            <p class="zoom-help">※クリックで拡大表示</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Running Log</p>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. URLのパラメータからIDを取得 (?id=kyoto2026 など)
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentRaceId = urlParams.get('id');
+            
+            // 2. script.js の allRaceData から該当するデータを探す
+            const raceInfo = allRaceData.find(r => r.id === currentRaceId);
+
+            if (!raceInfo) {
+                document.getElementById('display-race-name').textContent = "Record Not Found";
+                return;
+            }
+
+            // 3. データの流し込み
+            document.getElementById('display-race-name').textContent = raceInfo.name;
+            document.getElementById('display-main-time').textContent = raceInfo.time;
+            document.getElementById('display-date').textContent = raceInfo.date;
+            document.getElementById('display-location').textContent = `${raceInfo.location}${raceInfo.venue ? '（' + raceInfo.venue + '）' : ''}`;
+            document.getElementById('display-weather').textContent = raceInfo.weather || '-';
+            
+            // 振り返り
+            if (raceInfo.comment) {
+                document.getElementById('display-comment').textContent = raceInfo.comment;
+            } else {
+                document.getElementById('comment-section').style.display = 'none';
+            }
+
+            // シューズ
+            if (raceInfo.shoesName) {
+                document.getElementById('display-shoes-name').textContent = raceInfo.shoesName;
+                if (raceInfo.shoesImg) {
+                    document.getElementById('display-shoes-img').src = raceInfo.shoesImg;
+                }
+            } else {
+                document.getElementById('shoes-section').style.display = 'none';
+            }
+
+            // コースマップ
+            if (raceInfo.courseMap) {
+                document.getElementById('display-map').src = raceInfo.courseMap;
+            } else {
+                document.getElementById('map-section').style.display = 'none';
+            }
+
+            // 完走証
+            if (raceInfo.certificate) {
+                document.getElementById('display-cert-img').src = raceInfo.certificate;
+                document.getElementById('display-cert-link').href = raceInfo.certificate;
+            } else {
+                document.getElementById('cert-section').style.display = 'none';
+            }
+
+            // グラフ描画（ラップデータがある場合のみ）
+            if (raceInfo.laps) {
+                renderRaceChart(raceInfo.laps);
+            } else {
+                document.getElementById('graph-section').style.display = 'none';
+            }
+        });
+
+        // グラフ描画エンジン
+        function renderRaceChart(laps) {
+            const ctx = document.getElementById('raceChart').getContext('2d');
+            const distances = [0, 5, 10, 15, 20, 25, 30, 35, 40, 42.195];
+            const dataPoints = laps.map((time, index) => {
+                const parts = time.split(':').map(Number);
+                // 秒を分に変換してグラフ化
+                return { 
+                    x: distances[index], 
+                    y: parts[0] * 60 + parts[1] + (parts[2] / 60) 
+                };
+            });
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: '経過時間 (分)',
+                        data: dataPoints,
+                        borderColor: '#1e3c72',
+                        backgroundColor: 'rgba(30, 60, 114, 0.1)',
+                        borderWidth: 3,
+                        pointRadius: 4,
+                        fill: true,
+                        tension: 0.2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { 
+                            type: 'linear', 
+                            position: 'bottom', 
+                            title: { display: true, text: '距離 (km)' },
+                            ticks: { stepSize: 5 }
+                        },
+                        y: { 
+                            title: { display: true, text: '経過時間 (分)' },
+                            beginAtZero: true 
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `距離: ${context.parsed.x}km  経過時間: ${laps[context.dataIndex]}`
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

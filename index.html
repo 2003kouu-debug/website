@@ -6,7 +6,6 @@
     <title>Full Marathon Records | My Running Log</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<script src="script.js"></script>
 <body>
 
     <header>
@@ -20,7 +19,8 @@
         <section class="summary">
             <div class="summary-card">
                 <span class="label">Personal Best</span>
-                <span class="value" id="pbDisplay">--:--:--</span> </div>
+                <span class="value" id="pbDisplay">--:--:--</span>
+            </div>
             <div class="summary-card">
                 <span class="label">Total Runs</span>
                 <span class="value" id="totalRunsDisplay">-- Races</span>
@@ -29,149 +29,14 @@
 
         <section class="record-list">
             <h2>Race History</h2>
-
-            <a href="kyoto2026.html" class="race-link">
-                <div class="race-item">
-                    <div class="race-date">2026.02.15</div>
-                    <div class="race-info">
-                        <h3>京都マラソン 2026</h3>
-                        <p class="venue">Location: 京都</p>
-                        <p class="comment">気温が高く前半オーバーペースになってしまった</p>
-                    </div>
-                    <div class="race-time">
-                        <span class="time race-time-value">2:59:30</span>
-                 </div>
-                </div>
-            </a>
-
-            <div class="race-item">
-                <div class="race-date">2025.12.16</div>
-                <div class="race-info">
-                    <h3>奈良マラソン 2025</h3>
-                    <p class="venue">Location: 奈良</p>
-                    <p class="comment">記録は狙っていなかった大会．楽しんで走れた．</p>
-                </div>
-                <div class="race-time">
-                    <span class="time race-time-value">2:46:30</span>
-                </div>
-            </div>
-
-            <div class="race-item">
-                <div class="race-date">2025.11.02</div>
-                <div class="race-info">
-                    <h3>富山マラソン 2025</h3>
-                    <p class="venue">Location: 富山</p>
-                    <p class="comment">足が持たず後半失速．距離走が必要．</p>
-                </div>
-                <div class="race-time">
-                    <span class="time race-time-value">2:47:30</span>
-                </div>
-            </div>
-
-            <div class="race-item">
-                <div class="race-date">2025.03.30</div>
-                <div class="race-info">
-                    <h3>福井桜マラソン 2025</h3>
-                    <p class="venue">Location: 福井</p>
-                    <p class="comment">寒さのせいで前半に体がかたかった．</p>
-                </div>
-                <div class="race-time">
-                    <span class="time race-time-value">2:45:25</span>
-                </div>
-            </div>
-
-            <div class="race-item">
-                <div class="race-date">2025.03.09</div>
-                <div class="race-info">
-                    <h3>びわ湖マラソン 2025</h3>
-                    <p class="venue">Location: 滋賀</p>
-                    <p class="comment">最後につったがコンディションがよくPB更新</p>
-                </div>
-                <div class="race-time">
-                    <span class="time race-time-value">2:45:03</span>
-                </div>
-            </div>
-
-            <div class="race-item">
-                <div class="race-date">2024.11.17</div>
-                <div class="race-info">
-                    <h3>神戸マラソン 2024</h3>
-                    <p class="venue">Location: 神戸</p>
-                    <p class="comment">宮城マラソンの疲労が残っていて半分で失速</p>
-                </div>
-                <div class="race-time">
-                    <span class="time race-time-value">3:39:10</span>
-                </div>
-            </div>
-
-            <div class="race-item">
-                <div class="race-date">2024.11.03</div>
-                <div class="race-info">
-                    <h3>東北宮城復興マラソン 2024</h3>
-                    <p class="venue">Location: 宮城</p>
-                    <p class="comment">飛行機が欠航し当日ほぼ寝れずにスタート</p>
-                </div>
-                <div class="race-time">
-                    <span class="time race-time-value">3:00:36</span>
-                </div>
-            </div>
-
-            <div class="race-item">
-                <div class="race-date">2024.03.10</div>
-                <div class="race-info">
-                    <h3>静岡マラソン 2024</h3>
-                    <p class="venue">Location: 静岡</p>
-                    <p class="comment">イーブンペースを守り切れてPB更新</p>
-                </div>
-                <div class="race-time">
-                    <span class="time race-time-value">2:48:21</span>
-                </div>
-            </div>
-
-            <div class="race-item">
-                <div class="race-date">2024.02.18</div>
-                <div class="race-info">
-                    <h3>京都マラソン 2024</h3>
-                    <p class="venue">Location: 京都</p>
-                    <p class="comment">気温が高く脱水になったが何とかゴール</p>
-                </div>
-                <div class="race-time">
-                    <span class="time race-time-value">2:55:47</span>
-                </div>
-            </div>
-
-            <div class="race-item">
-                <div class="race-date">2023.11.12</div>
-                <div class="race-info">
-                    <h3>松本マラソン 2023</h3>
-                    <p class="venue">Location: 長野</p>
-                    <p class="comment">前半抑えれたおかげで後半に加速できた</p>
-                </div>
-                <div class="race-time">
-                    <span class="time race-time-value">3:19:08</span>
-                </div>
-            </div>
-
-            <div class="race-item">
-                <div class="race-date">2023.03.19</div>
-                <div class="race-info">
-                    <h3>とくしまマラソン 2023</h3>
-                    <p class="venue">Location: 徳島</p>
-                    <p class="comment">初マラソン！完走おめでとう</p>
-                </div>
-                <div class="race-time">
-                    <span class="time race-time-value">4:19:44</span>
-                </div>
-            </div>
-
-
-
-            </section>
+            <div id="race-list-container"></div>
+        </section>
     </main>
 
     <footer>
         <p>&copy; 2026 My Running Log</p>
     </footer>
 
+    <script src="script.js"></script> 
 </body>
 </html>

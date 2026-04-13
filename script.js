@@ -8,8 +8,8 @@ const allRaceData = [
         venue: "西京極〜平安神宮",
         weather: "晴れ / 18℃",
         time: "2:59:30",
-        shoesName: "Nike Alphafly 3",
-        shoesImg: "images/alphafly3.jpg",
+        shoesName: "adios pro 4",
+        shoesImg: "images/adios_pro4.jpg",
         courseMap: "images/kyoto2026_map.jpg",        
         certificate: "images/kyoto2026_certificate.jpg", 
         comment: "気温が高く前半オーバーペースになってしまった",
@@ -21,6 +21,10 @@ const allRaceData = [
         date: "2025.12.16",
         location: "奈良",
         time: "2:46:30",
+        shoesName: "adios pro 4",
+        shoesImg: "images/adios_pro4.jpg",
+        courseMap: "images/nara2025_map.jpg",
+        certificate: "images/nara2025_certificate.jpg", 
         comment: "記録は狙っていなかった大会．楽しんで走れた．"
     },
     {
@@ -29,6 +33,10 @@ const allRaceData = [
         date: "2025.11.02",
         location: "富山",
         time: "2:47:30",
+        shoesName: "vaporfly 3",
+        shoesImg: "images/vaporfly3.jpg",
+        courseMap: "images/toyama2025_map.jpg",
+        certificate: "images/toyama2025_certificate.jpg",
         comment: "足が持たず後半失速．距離走が必要．"
     },
     {
@@ -37,6 +45,10 @@ const allRaceData = [
         date: "2025.03.30",
         location: "福井",
         time: "2:45:25",
+        shoesName: "vaporfly 3",
+        shoesImg: "images/vaporfly3.jpg",
+        courseMap: "images/fukui2025_map.jpg",
+        certificate: "images/fukui2025_certificate.jpg",
         comment: "寒さのせいで前半に体がかたかった．"
     },
     {
@@ -45,6 +57,10 @@ const allRaceData = [
         date: "2025.03.09",
         location: "滋賀",
         time: "2:45:03",
+        shoesName: "vaporfly 3",
+        shoesImg: "images/vaporfly3.jpg",
+        courseMap: "images/biwako2025_map.jpg",
+        certificate: "images/biwako2025_certificate.jpg",
         comment: "最後につったがコンディションがよくPB更新"
     },
     {
@@ -53,6 +69,10 @@ const allRaceData = [
         date: "2024.11.17",
         location: "神戸",
         time: "3:39:10",
+        shoesName: "zoomfly 5",
+        shoesImg: "images/zoomfly5.jpg",
+        courseMap: "images/kobe2024_map.jpg",
+        certificate: "images/kobe2024_certificate.jpg",
         comment: "宮城マラソンの疲労が残っていて半分で失速"
     },
     {
@@ -61,6 +81,10 @@ const allRaceData = [
         date: "2024.11.03",
         location: "宮城",
         time: "3:00:36",
+        shoesName: "zoomfly 5",
+        shoesImg: "images/zoomfly5.jpg",
+        courseMap: "images/miyagi2024_map.jpg",
+        certificate: "images/miyagi2024_certificate.jpg",
         comment: "飛行機が欠航し当日ほぼ寝れずにスタート"
     },
     {
@@ -69,6 +93,10 @@ const allRaceData = [
         date: "2024.03.10",
         location: "静岡",
         time: "2:48:21",
+        shoesName: "zoomfly 5",
+        shoesImg: "images/zoomfly5.jpg",
+        courseMap: "images/shizuoka2024_map.jpg",
+        certificate: "images/shizuoka2024_certificate.jpg",
         comment: "イーブンペースを守り切れてPB更新"
     },
     {
@@ -77,6 +105,10 @@ const allRaceData = [
         date: "2024.02.18",
         location: "京都",
         time: "2:55:47",
+        shoesName: "freshform1080",
+        shoesImg: "images/freshform1080.jpg",
+        courseMap: "images/kyoto2024_map.jpg",
+        certificate: "images/kyoto2024_certificate.jpg",
         comment: "気温が高く脱水になったが何とかゴール"
     },
     {
@@ -85,6 +117,10 @@ const allRaceData = [
         date: "2023.11.12",
         location: "長野",
         time: "3:19:08",
+        shoesName: "freshform1080",
+        shoesImg: "images/freshform1080.jpg",
+        courseMap: "images/matsumoto2023_map.jpg",
+        certificate: "images/matsumoto2023_certificate.jpg",
         comment: "前半抑えれたおかげで後半に加速できた"
     },
     {
@@ -93,6 +129,10 @@ const allRaceData = [
         date: "2023.03.19",
         location: "徳島",
         time: "4:19:44",
+        shoesName: "novablast",
+        shoesImg: "images/novablast.jpg",
+        courseMap: "images/tokushima2023_map.jpg",
+        certificate: "images/tokushima2023_certificate.jpg",
         comment: "初マラソン！完走おめでとう"
     }
 ];

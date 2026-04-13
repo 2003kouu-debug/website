@@ -62,7 +62,10 @@
                     <div class="map-block" id="map-section">
                         <h3>コースマップ</h3>
                         <div class="img-wrapper">
-                            <img src="" alt="Course Map" id="display-map" class="map-image">
+                            <a href="" id="display-map-link" target="_blank">
+                                <img src="" alt="Course Map" id="display-map-img" class="map-image-small">
+                            </a>
+                            <p class="zoom-help">※クリックで拡大表示</p>
                         </div>
                     </div>
 
@@ -126,7 +129,8 @@
 
             // コースマップ
             if (raceInfo.courseMap) {
-                document.getElementById('display-map').src = raceInfo.courseMap;
+                document.getElementById('display-map-img').src = raceInfo.courseMap;
+                document.getElementById('display-map-link').href = raceInfo.courseMap;
             } else {
                 document.getElementById('map-section').style.display = 'none';
             }

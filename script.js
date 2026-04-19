@@ -67,7 +67,7 @@ const allRaceData = [
         id: "kobe2024",
         name: "神戸マラソン 2024",
         date: "2024.11.17",
-        location: "神戸",
+        location: "兵庫",
         time: "3:39:10",
         shoesName: "zoomfly 5",
         shoesImg: "images/zoomfly5.jpg",
@@ -188,4 +188,51 @@ document.addEventListener('DOMContentLoaded', function() {
         if (pbDisplay) pbDisplay.textContent = pbTime;
         if (totalRunsDisplay) totalRunsDisplay.textContent = `${times.length} Races`;
     }
+});
+
+// C. 走破都道府県の表示とマップ生成
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // 1. データの準備：allRaceDataから走った県を重複なく取り出す
+    // 例: ["京都", "奈良", "滋賀", "京都"] -> ["京都", "奈良", "滋賀"]
+    const visitedPrefs = [...new Set(allRaceData.map(race => race.location))];
+
+    // 2. 数値の表示更新
+    const prefCountEl = document.getElementById('prefCount');
+    if (prefCountEl) {
+        prefCountEl.textContent = visitedPrefs.length;
+    }
+
+    // 3. 都道府県バッジの生成
+    const mapContainer = document.getElementById('japan-map');
+    if (mapContainer) {
+        // 表示したい都道府県のリスト（必要に応じて47都道府県分まで増やしてください）
+        const allPrefs = [
+            "北海道", "青森", "岩手", "宮城", "秋田", "山形", "福島",
+            "茨城", "栃木", "群馬", "埼玉", "千葉", "東京", "神奈川",
+            "新潟", "富山", "石川", "福井", "山梨", "長野", "岐阜", "静岡", "愛知",
+            "三重", "滋賀", "京都", "大阪", "兵庫", "奈良", "和歌山",
+            "鳥取", "島根", "岡山", "広島", "山口",
+            "徳島", "香川", "愛媛", "高知",
+            "福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"
+        ];
+
+        // 各都道府県のバッジを作成して追加していく
+        allPrefs.forEach(pref => {
+            const badge = document.createElement('div');
+            badge.textContent = pref;
+            
+            // もしその県が「走破済みリスト」に入っていたらクラスを追加
+            if (visitedPrefs.includes(pref)) {
+                badge.className = 'pref-badge visited';
+            } else {
+                badge.className = 'pref-badge';
+            }
+            
+            mapContainer.appendChild(badge);
+        });
+    }
+
+    // ※ここに「サマリー計算」「ギャラリー生成」「履歴リスト生成」のコードが続きます
 });

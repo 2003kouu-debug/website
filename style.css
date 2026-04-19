@@ -65,6 +65,83 @@ h2 {
     margin-bottom: 30px;
 }
 
+/* --- ランニングマップセクション --- */
+.map-list {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* 「走破都道府県: 5 / 47」の部分 */
+.map-status {
+    margin: 10px 0 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#prefCount {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* バッジを並べるコンテナ */
+.japan-map {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* バッジ同士の隙間 */
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+/* 各都道府県バッジの基本（未踏の県） */
+.pref-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: #e0e0e0; /* グレー（未踏） */
+    color: #999;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: default;
+    user-select: none;
+}
+
+/* 走破済みの県（visitedクラスがついた時） */
+.pref-badge.visited {
+    background: #2a5298;
+    color: white;
+    box-shadow: 0 3px 8px rgba(30, 60, 114, 0.3);
+    transform: translateY(-1px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 走破済みの県にマウスを乗せた時の演出 */
+.pref-badge.visited:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(30, 60, 114, 0.4);
+}
+
+/* スマホ表示の調整 */
+@media (max-width: 600px) {
+    .japan-map {
+        padding: 15px 10px;
+        gap: 6px;
+    }
+    .pref-badge {
+        padding: 4px 10px;
+        font-size: 0.75rem;
+    }
+}
+
 /* 各大会の記録 */
 /* リンクの下線を消し、文字色を元のデザインに固定する */
 .race-link {

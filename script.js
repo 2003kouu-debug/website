@@ -67,7 +67,7 @@ const allRaceData = [
         id: "kobe2024",
         name: "神戸マラソン 2024",
         date: "2024.11.17",
-        location: "神戸",
+        location: "兵庫",
         time: "3:39:10",
         shoesName: "zoomfly 5",
         shoesImg: "images/zoomfly5.jpg",
@@ -188,4 +188,38 @@ document.addEventListener('DOMContentLoaded', function() {
         if (pbDisplay) pbDisplay.textContent = pbTime;
         if (totalRunsDisplay) totalRunsDisplay.textContent = `${times.length} Races`;
     }
+});
+
+// C. 走破都道府県の表示とマップ生成
+
+document.addEventListener('DOMContentLoaded', function() {
+    const visitedPrefs = [...new Set(allRaceData.map(race => race.location))];
+
+    // バッジ生成と地図塗りつぶしを一気に行う
+    const allPrefs = ["北海道", "青森", "岩手", "宮城", "秋田", "山形", "福島", "茨城", "栃木", "群馬", "埼玉", "千葉", "東京", "神奈川", "新潟", "富山", "石川", "福井", "山梨", "長野", "岐阜", "静岡", "愛知", "三重", "滋賀", "京都", "大阪", "兵庫", "奈良", "和歌山", "鳥取", "島根", "岡山", "広島", "山口", "徳島", "香川", "愛媛", "高知", "福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"];
+
+    const mapContainer = document.getElementById('japan-map');
+
+    allPrefs.forEach(pref => {
+        // 1. バッジの作成
+        const badge = document.createElement('div');
+        badge.textContent = pref;
+        const isVisited = visitedPrefs.includes(pref);
+        
+        if (isVisited) {
+            badge.className = 'pref-badge visited';
+            
+            // 2. SVG地図の塗りつぶし (data-nameが一致するpathを探す)
+            const prefPath = document.querySelector(`.pref-path[data-name="${pref}"]`);
+            if (prefPath) {
+                prefPath.classList.add('visited');
+            }
+        } else {
+            badge.className = 'pref-badge';
+        }
+        mapContainer.appendChild(badge);
+    });
+
+    // カウント表示
+    document.getElementById('prefCount').textContent = visitedPrefs.length;
 });

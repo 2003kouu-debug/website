@@ -65,6 +65,40 @@ h2 {
     margin-bottom: 30px;
 }
 
+/* --- ランニングマップセクション全体の枠組み --- */
+.map-list {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* SVGの基本スタイル */
+.japan-svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+}
+
+/* 全県のデフォルト（グレー） */
+.pref-path {
+    fill: #e0e0e0;
+    stroke: #ffffff; /* 県境 */
+    stroke-width: 2;
+    transition: fill 0.3s ease;
+}
+
+/* 走破した県（いつもの青） */
+.pref-path.visited {
+    fill: #2a5298; /* バッジと同じ青 */
+}
+
+/* ホバーで少し明るくする */
+.pref-path.visited:hover {
+    fill: #3a62a8;
+}
+
 /* 各大会の記録 */
 /* リンクの下線を消し、文字色を元のデザインに固定する */
 .race-link {
